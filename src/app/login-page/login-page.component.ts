@@ -34,8 +34,7 @@ export class LoginPageComponent implements OnInit {
     const user: User = new User(this.form.value.username, this.form.value.password);
     console.log(user);
     this.auth.login(user)
-      .subscribe(() => {
-        this.form.reset;
+      .subscribe(() => { 
         this.router.navigate(['/main']);
       }        
     );

@@ -24,8 +24,12 @@ export class AuthService {
   private setTokens(response: any) {
     console.log('Setting tokens.');
     if (response) {
-      localStorage.setItem('access-token', response.headers.get('access_token'));
-      localStorage.setItem('refresh_token', response.headers.get('refresh_token'));
+      const accessToken = response.headers.get('access_token');
+      const refreshToken = response.headers.get('refresh_token');
+      const authorities = JSON.parse(window.atob(accessToken.split('.')[1])).authorities;        
+      localStorage.setItem('access-token', accessToken);
+      localStorage.setItem('refresh_token', refreshToken);
+      localStorage.setItem('authorities', authorities);
     } else {
       console.log('Clearing local storage.');
       localStorage.clear();
