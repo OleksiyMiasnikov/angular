@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import {User} from '../user';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,10 @@ export class AuthService {
   constructor(private http: HttpClient) {} 
   
   login(user: User) {
-    console.log('auth.login. User: ' + user.username);
-    let body = JSON.stringify(user);
+    console.log('auth.login. User: ' + user.username); 
     
-    return this.http.get('http://localhost:8080/tags')
-      .subscribe((response) => {
-        console.log(response);
-      });
+    return this.http.post('http://localhost:8080/login',
+      { name: user.username, password: user.password },
+      { observe:'response'}); 
   }
 }

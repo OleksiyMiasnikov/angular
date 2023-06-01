@@ -30,6 +30,11 @@ export class LoginPageComponent implements OnInit {
     console.log('Submitted. Name: ' + this.form.value.username + ', password: ' + this.form.value.password); 
     const user: User = new User(this.form.value.username, this.form.value.password);
     console.log(user);
-    this.auth.login(user);
+    this.auth.login(user).subscribe((response) => {
+          console.log(response.headers);
+          console.log(response.headers.get('access_token'));
+          console.log(response.headers.get('refresh_token'));
+        }
+      );
   }
 }
