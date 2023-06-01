@@ -9,6 +9,9 @@
       <a [routerLink]="['/login']">Login</a>
     </li>
     <li routerLinkActive="active">
+      <a href="#" (click)="logout($event)">Logout</a>
+    </li>
+    <li routerLinkActive="active">
       <a [routerLink]="['/signup']">Sign Up</a>
     </li>
   </ul>
