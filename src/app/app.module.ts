@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TopBarLoginComponent } from './top-bar-login/top-bar-login.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SignUpPageComponent,
     HeaderComponent,
     CartPageComponent,
+    TopBarLoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule,
     ReactiveFormsModule, HttpClientModule],
