@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Tag } from '../tag';
+import { Certificate } from '../certificate';
 
 @Component({
   selector: 'app-cert',
@@ -10,13 +10,13 @@ import { Tag } from '../tag';
 })
 export class CertComponent implements OnInit{
 
-  tag: Tag[] = [];
+  tag: Certificate[] = [];
   
   constructor(private http: HttpClient){}
 
   ngOnInit(): void {
     console.log("Init")
-    this.http.get<Tag[]>(`${environment.appUrl}/tags`)
+    this.http.get<Certificate[]>(`${environment.appUrl}/certificates`)
       .subscribe({next: (data: any) => this.tag=data["content"]})     
   }
 }

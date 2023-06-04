@@ -8,12 +8,13 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 import { HeaderComponent } from './header/header.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MenuIconsComponent } from './menu-icons/menu-icons.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { CertComponent } from './cert/cert.component';
+import { TokenInterceptorService } from './shared/token-interceptor.service';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,7 @@ import { CertComponent } from './cert/cert.component';
         CertificatesComponent,
         CertComponent,        
     ],
-    providers: [],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

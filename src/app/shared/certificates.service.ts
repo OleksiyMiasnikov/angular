@@ -6,12 +6,12 @@ import { Certificate } from '../certificate';
 @Injectable({
   providedIn: 'root'
 })
+  
 export class CertificatesService {
  
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<Certificate[]>(`${environment.appUrl}/certificates`) 
-     
+    return this.http.get<Certificate[]>(`${environment.appUrl}/certificates`)    
   }
 }
