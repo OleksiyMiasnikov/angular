@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse} from '@angular/common/http';
 import {User} from '../user';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class AuthService {
   login(user: User) {
     console.log('auth.login. User: ' + user.username); 
     
-    return this.http.post('http://localhost:8080/login',
+    return this.http.post(`${environment.appUrl}/login`,
       { name: user.username, password: user.password },
       { observe: 'response' })
       .pipe(tap(this.setTokens)); 
@@ -26,10 +27,12 @@ export class AuthService {
     if (response) {
       const accessToken = response.headers.get('access_token');
       const refreshToken = response.headers.get('refresh_token');
-      const authorities = JSON.parse(window.atob(accessToken.split('.')[1])).authorities;        
+      const name = JSON.parse(window.atob(accessToken.split('.')[1])).name;
+      const authorities = JSON.parse(window.atob(accessToken.split('.')[1])).authorities;
       localStorage.setItem('access-token', accessToken);
       localStorage.setItem('refresh_token', refreshToken);
       localStorage.setItem('authorities', authorities);
+      localStorage.setItem('user', name);
     } else {
       console.log('Clearing local storage.');
       localStorage.clear();

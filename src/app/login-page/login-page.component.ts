@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
-import { MainPageComponent } from '../main-page/main-page.component';
 
 @Component({
   selector: 'app-login-page',
@@ -35,7 +34,7 @@ export class LoginPageComponent implements OnInit {
     console.log(user);
     this.auth.login(user)
       .subscribe(() => { 
-        this.router.navigate(['/main']);
+        this.router.navigate(['/certificates']);
       }        
     );
   }
